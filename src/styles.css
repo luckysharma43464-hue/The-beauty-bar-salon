@@ -19,6 +19,8 @@
  */
 
 @theme inline {
+  --font-display: "Cormorant Garamond", serif;
+  --font-sans: "Manrope", sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -59,29 +61,39 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+  --color-ivory: var(--ivory);
+  --color-espresso: var(--espresso);
+  --color-champagne: var(--champagne);
+  --color-rose: var(--rose);
+  --color-wine: var(--wine);
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.25rem;
+  --background: oklch(0.965 0.018 82);
+  --foreground: oklch(0.22 0.035 42);
+  --card: oklch(0.985 0.012 85);
+  --card-foreground: oklch(0.22 0.035 42);
+  --popover: oklch(0.985 0.012 85);
+  --popover-foreground: oklch(0.22 0.035 42);
+  --primary: oklch(0.22 0.035 42);
+  --primary-foreground: oklch(0.965 0.018 82);
+  --secondary: oklch(0.89 0.035 65);
+  --secondary-foreground: oklch(0.22 0.035 42);
+  --muted: oklch(0.92 0.022 76);
+  --muted-foreground: oklch(0.46 0.027 46);
+  --accent: oklch(0.75 0.07 76);
+  --accent-foreground: oklch(0.18 0.03 42);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --border: oklch(0.79 0.035 70);
+  --input: oklch(0.86 0.025 72);
+  --ring: oklch(0.55 0.07 65);
+  --ivory: oklch(0.965 0.018 82);
+  --espresso: oklch(0.22 0.035 42);
+  --champagne: oklch(0.75 0.07 76);
+  --rose: oklch(0.73 0.07 32);
+  --wine: oklch(0.34 0.09 20);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -140,5 +152,37 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: 0;
+    overflow-x: hidden;
   }
+
+  html { scroll-behavior: smooth; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: 0; }
+  ::selection { background: var(--color-champagne); color: var(--color-espresso); }
+}
+
+@utility editorial-rule {
+  &::before { content: ""; display: inline-block; width: 2.5rem; height: 1px; margin-right: 0.75rem; vertical-align: middle; background: currentColor; }
+}
+
+@utility image-veil {
+  &::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, oklch(0.15 0.03 40 / 0.9), oklch(0.18 0.03 40 / 0.5) 52%, transparent); }
+}
+
+@utility fine-grain {
+  &::before { content: ""; pointer-events: none; position: absolute; inset: 0; opacity: .14; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E"); }
+}
+
+@keyframes slow-zoom { from { transform: scale(1.02); } to { transform: scale(1.08); } }
+@keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+.hero-image { animation: slow-zoom 16s ease-in-out infinite alternate; }
+.hero-copy > * { animation: rise .8s both; }
+.hero-copy > *:nth-child(2) { animation-delay: .12s; }
+.hero-copy > *:nth-child(3) { animation-delay: .22s; }
+.hero-copy > *:nth-child(4) { animation-delay: .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

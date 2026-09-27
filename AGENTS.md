@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep this site as a frontend-first appointment request experience completed through WhatsApp or phone; this avoids implying live availability without a scheduling backend.
