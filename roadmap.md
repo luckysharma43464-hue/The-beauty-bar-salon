@@ -1,5 +1,5 @@
 # Roadmap
 
-- [ ] Build branded salon homepage
-- [ ] Add interactive appointment request flow
-- [ ] Verify mobile and desktop presentation
+- [x] Build branded salon homepage
+- [x] Add interactive appointment request flow
+- [x] Verify mobile and desktop presentation
